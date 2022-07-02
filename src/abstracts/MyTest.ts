@@ -10,14 +10,13 @@ export type Component<
 export type GenericComponent<T> = (T extends Component<infer P> ? P : {}) &
   (T extends Component<any, infer M> ? M : {});
 
-export interface IMyTest
-  extends Component<
-    {
-      msg?: string;
-    },
-    {
-      emitChange: () => any;
-    }
-  > {}
+export type IMyTest = Component<
+  {
+    msg?: string;
+  },
+  {
+    emitChange: () => any;
+  }
+>;
 
 export const MyTest: IMyTest & string = "MyTest" as any;
