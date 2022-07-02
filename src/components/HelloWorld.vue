@@ -1,6 +1,11 @@
 <script lang="tsx">
+import { defineComponent } from "vue";
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { MyTest } from "../abstracts/MyTest";
+import { IComponent, MyTest } from "../abstracts/MyTest";
+
+const Z = defineComponent({
+  emits: ["change", "input"],
+});
 
 @Component
 export default class HelloWorld extends Vue {
@@ -11,7 +16,15 @@ export default class HelloWorld extends Vue {
       <div>
         <h4>Hello world</h4>
 
-        <MyTest msg={this.msg} />
+        <MyTest
+          ref="test"
+          msg={this.msg}
+          onChange={() => {
+            (
+              this.$refs.test as unknown as IComponent<typeof MyTest>
+            ).printMsg();
+          }}
+        />
       </div>
     );
   }

@@ -1,22 +1,30 @@
-import { ComponentRenderProxy } from "vue/types/v3-component-proxy";
+import { MethodOptions } from "vue/types/v3-component-options";
+import { VueProxy } from "vue/types/v3-component-proxy";
+import { EmitsOptions } from "vue/types/v3-setup-context";
 
-export type Component<
-  P = {},
-  M extends {
-    [key: string]: Function;
-  } = {}
-> = new (...args: any[]) => ComponentRenderProxy<P, {}, {}, {}, M>;
+export type ComponentFactory<
+  Props = {},
+  Methods extends MethodOptions = {},
+  Emits extends EmitsOptions = {}
+> = VueProxy<Props, {}, {}, {}, Methods, {}, {}, Emits>;
 
-export type GenericComponent<T> = (T extends Component<infer P> ? P : {}) &
-  (T extends Component<any, infer M> ? M : {});
+export type IComponent<T> = T extends ComponentFactory<
+  infer Props,
+  infer Methods,
+  any[]
+>
+  ? Props & Methods
+  : never;
 
-export type IMyTest = Component<
-  {
-    msg?: string;
-  },
-  {
-    emitChange: () => any;
-  }
->;
+export interface IMyTest
+  extends ComponentFactory<
+    {
+      msg?: string;
+    },
+    {
+      printMsg(): void;
+    },
+    "change"[]
+  > {}
 
 export const MyTest: IMyTest & string = "MyTest" as any;

@@ -1,24 +1,23 @@
 <script lang="tsx">
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-import { Component, Emit, Prop, Vue } from "vue-property-decorator";
-import { GenericComponent, IMyTest } from "../abstracts/MyTest";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { IComponent, IMyTest } from "../abstracts/MyTest";
 
 @Component({
   components: {
     HelloWorld,
   },
 })
-export default class HomeView extends Vue implements GenericComponent<IMyTest> {
+export default class MyTest extends Vue implements IComponent<IMyTest> {
   @Prop({ type: String })
   msg?: string;
 
-  @Emit("change")
-  emitChange() {
-    return "testevent";
+  printMsg(): void {
+    throw new Error("Method not implemented.");
   }
 
   render() {
-    return <button onClick={this.emitChange}>{this.msg}!!!</button>;
+    return <button>{this.msg}!!!</button>;
   }
 }
 </script>
