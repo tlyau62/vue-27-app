@@ -1,6 +1,7 @@
 <script lang="tsx">
 import { defineComponent } from "vue";
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { MyButtonSymbol } from "../abstracts/MyButton";
 import { IComponent, MyTest } from "../abstracts/MyTest";
 
 const Z = defineComponent({
@@ -16,9 +17,9 @@ export default class HelloWorld extends Vue {
       <div>
         <h4>Hello world</h4>
 
-        <MyTest
+        <MyButtonSymbol
           ref="test"
-          msg={this.msg}
+          name={this.msg}
           onChange={() => {
             (
               this.$refs.test as unknown as IComponent<typeof MyTest>

@@ -2,13 +2,13 @@ import { MethodOptions } from "vue/types/v3-component-options";
 import { VueProxy } from "vue/types/v3-component-proxy";
 import { EmitsOptions } from "vue/types/v3-setup-context";
 
-export type ComponentFactory<
+export type ComponentDefinition<
   Props = {},
   Methods extends MethodOptions = {},
   Emits extends EmitsOptions = {}
 > = VueProxy<Props, {}, {}, {}, Methods, {}, {}, Emits>;
 
-export type IComponent<T> = T extends ComponentFactory<
+export type IComponent<T> = T extends ComponentDefinition<
   infer Props,
   infer Methods,
   any[]
@@ -17,7 +17,7 @@ export type IComponent<T> = T extends ComponentFactory<
   : never;
 
 export interface IMyTest
-  extends ComponentFactory<
+  extends ComponentDefinition<
     {
       msg?: string;
     },
