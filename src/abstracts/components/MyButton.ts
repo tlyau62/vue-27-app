@@ -20,5 +20,5 @@ export type MyButtonMethods = ComponentMethods<{
 
 export type MyButton = Component<MyButtonProps, MyButtonMethods>;
 
-export const MyButtonSymbol: ComponentSymbol<MyButtonProps, MyButtonMethods> =
+export const MyButton: ComponentSymbol<MyButtonProps, MyButtonMethods> =
   "MyButton" as any;

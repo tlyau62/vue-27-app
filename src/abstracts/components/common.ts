@@ -30,4 +30,5 @@ export type ComponentSymbol<
   {},
   {},
   Array<ComponentEvents<Methods>>
->;
+> &
+  string;

@@ -1,13 +1,13 @@
 import Vue from "vue";
-import { MyTest } from "./abstracts/MyTest";
+import { MyButton } from "./abstracts/components/MyButton";
 import App from "./App.vue";
-import MyTestComponent from "./components/MyTest.vue";
+import MyButtonComponent from "./components/MyButton.vue";
 import router from "./router";
 import store from "./store";
 
 Vue.config.productionTip = false;
 
-Vue.component(MyTest, MyTestComponent);
+Vue.component(MyButton, MyButtonComponent);
 
 new Vue({
   router,
